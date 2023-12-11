@@ -12,4 +12,10 @@
     <PackageReference Include="itext7" Version="8.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="PDFTools.Package\" />
+    <Folder Include="PDFTools.Tests\" />
+    <Folder Include="PDFTools.App.Package\" />
+  </ItemGroup>
+
 </Project>
