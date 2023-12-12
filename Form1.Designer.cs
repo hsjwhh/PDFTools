@@ -31,7 +31,7 @@
             groupBox1 = new GroupBox();
             rbtMerge = new RadioButton();
             radioButton1 = new RadioButton();
-            button2 = new Button();
+            btRun = new Button();
             lbPdfFiles = new ListBox();
             btSelect = new Button();
             label1 = new Label();
@@ -44,7 +44,7 @@
             // 
             groupBox1.Controls.Add(rbtMerge);
             groupBox1.Controls.Add(radioButton1);
-            groupBox1.Controls.Add(button2);
+            groupBox1.Controls.Add(btRun);
             groupBox1.Controls.Add(lbPdfFiles);
             groupBox1.Controls.Add(btSelect);
             groupBox1.Controls.Add(label1);
@@ -78,14 +78,15 @@
             radioButton1.Text = "拆分";
             radioButton1.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btRun
             // 
-            button2.Location = new Point(6, 202);
-            button2.Name = "button2";
-            button2.Size = new Size(548, 23);
-            button2.TabIndex = 3;
-            button2.Text = "运行";
-            button2.UseVisualStyleBackColor = true;
+            btRun.Location = new Point(6, 202);
+            btRun.Name = "btRun";
+            btRun.Size = new Size(548, 23);
+            btRun.TabIndex = 3;
+            btRun.Text = "运行";
+            btRun.UseVisualStyleBackColor = true;
+            btRun.Click += btRun_Click;
             // 
             // lbPdfFiles
             // 
@@ -149,7 +150,7 @@
         #endregion
 
         private GroupBox groupBox1;
-        private Button button2;
+        private Button btRun;
         private ListBox lbPdfFiles;
         private Button btSelect;
         private Label label1;

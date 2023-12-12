@@ -1,6 +1,6 @@
 using iText.Kernel.Pdf;
-using iText.Layout;
-using iText.Layout.Element;
+using iText.Kernel.Pdf.Canvas.Parser;
+using iText.Kernel.Pdf.Canvas.Parser.Listener;
 
 namespace PDFTools
 {
@@ -53,6 +53,63 @@ namespace PDFTools
             else
             {
                 this.openFileDialogPDF.Multiselect = false;
+            }
+        }
+
+        private void btRun_Click(object sender, EventArgs e)
+        {
+            string msg = string.Empty;
+            if (lbPdfFiles.Items.Count > 0)
+            {
+                foreach (String file in lbPdfFiles.Items)
+                {
+                    splitePDF(file);
+                }
+                //MessageBox.Show(msg);
+            }
+            else
+            {
+                //MessageBox.Show(msg);
+            }
+        }
+
+        private void splitePDF(string dest)
+        {
+            try
+            {
+                // 输入PDF文件路径
+                string inputFilePath = Path.GetFullPath(dest);
+
+                // 输出PDF文件夹路径
+                string outputFolder = Path.GetDirectoryName(dest);
+
+                // 创建 PdfReader
+                using (PdfReader pdfReader = new PdfReader(inputFilePath))
+                {
+                    // 获取 PdfDocument
+                    using (PdfDocument pdfDocument = new PdfDocument(pdfReader))
+                    {
+                        // 循环处理每一页
+                        for (int pageNum = 1; pageNum <= pdfDocument.GetNumberOfPages(); pageNum++)
+                        {
+                            // 创建新的 PdfDocument
+                            using (PdfDocument newPdfDocument = new PdfDocument(new PdfWriter(outputFolder + "page_" + pageNum + ".pdf")))
+                            {
+                                // 复制当前页到新的 PdfDocument
+                                pdfDocument.CopyPagesTo(pageNum, pageNum, newPdfDocument);
+
+                                // 关闭新的 PdfDocument
+                                newPdfDocument.Close();
+                            }
+                        }
+                    }
+                }
+
+                Console.WriteLine("PDF 分割完成！");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"发生错误: {e.Message}");
             }
         }
     }
