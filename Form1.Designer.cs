@@ -30,7 +30,7 @@
         {
             groupBox1 = new GroupBox();
             rbtMerge = new RadioButton();
-            radioButton1 = new RadioButton();
+            rbtSplit = new RadioButton();
             btRun = new Button();
             lbPdfFiles = new ListBox();
             btSelect = new Button();
@@ -43,7 +43,7 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(rbtMerge);
-            groupBox1.Controls.Add(radioButton1);
+            groupBox1.Controls.Add(rbtSplit);
             groupBox1.Controls.Add(btRun);
             groupBox1.Controls.Add(lbPdfFiles);
             groupBox1.Controls.Add(btSelect);
@@ -66,17 +66,17 @@
             rbtMerge.UseVisualStyleBackColor = true;
             rbtMerge.CheckedChanged += rbtMerge_CheckedChanged;
             // 
-            // radioButton1
+            // rbtSplit
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.Checked = true;
-            radioButton1.Location = new Point(367, 15);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(50, 21);
-            radioButton1.TabIndex = 4;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "拆分";
-            radioButton1.UseVisualStyleBackColor = true;
+            rbtSplit.AutoSize = true;
+            rbtSplit.Checked = true;
+            rbtSplit.Location = new Point(367, 15);
+            rbtSplit.Name = "rbtSplit";
+            rbtSplit.Size = new Size(50, 21);
+            rbtSplit.TabIndex = 4;
+            rbtSplit.TabStop = true;
+            rbtSplit.Text = "拆分";
+            rbtSplit.UseVisualStyleBackColor = true;
             // 
             // btRun
             // 
@@ -156,7 +156,7 @@
         private Label label1;
         private GroupBox groupBox2;
         private RadioButton rbtMerge;
-        private RadioButton radioButton1;
+        private RadioButton rbtSplit;
         private OpenFileDialog openFileDialogPDF;
     }
 }

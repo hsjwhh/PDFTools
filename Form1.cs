@@ -1,6 +1,7 @@
 using iText.Kernel.Pdf;
 using iText.Kernel.Pdf.Canvas.Parser;
 using iText.Kernel.Pdf.Canvas.Parser.Listener;
+using iText.Kernel.Utils;
 
 namespace PDFTools
 {
@@ -58,21 +59,43 @@ namespace PDFTools
 
         private void btRun_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
+            // string msg = string.Empty;
             if (lbPdfFiles.Items.Count > 0)
             {
-                foreach (String file in lbPdfFiles.Items)
+                if (rbtSplit.Checked)
                 {
-                    splitePDF(file);
+                    foreach (String file in lbPdfFiles.Items)
+                    {
+                        splitePDF(file);
+                    }
                 }
-                //MessageBox.Show(msg);
+                if (rbtMerge.Checked)
+                {
+                    List<String> sourceFiles = new List<String>();
+                    string outputFolder = string.Empty;
+                    foreach (String file in lbPdfFiles.Items)
+                    {
+                        sourceFiles.Add(file);
+                        if (outputFolder == string.Empty)
+                        {
+                            outputFolder = Path.GetDirectoryName(file);
+                        }
+                    }
+                    mergePdfFiles(sourceFiles, outputFolder + "Merge_PDF.pdf");
+                }
+                lbPdfFiles.Items.Clear();
             }
             else
             {
-                //MessageBox.Show(msg);
+                MessageBox.Show("请选择 PDF 文件后，再执行！");
             }
         }
 
+        #region 分割 PDF 文件方法
+        /// <summary>
+        /// 分割 PDF 文件
+        /// </summary>
+        /// <param name="dest">需要分割的原始 PDF 文件</param>
         private void splitePDF(string dest)
         {
             try
@@ -105,12 +128,48 @@ namespace PDFTools
                     }
                 }
 
-                Console.WriteLine("PDF 分割完成！");
+                // Console.WriteLine("PDF 分割完成！");
+
+                MessageBox.Show("PDF 分割完成！");
             }
             catch (Exception e)
             {
                 Console.WriteLine($"发生错误: {e.Message}");
             }
         }
+        #endregion
+
+        #region 合并 PDF 文件方法
+        /// <summary>
+        /// 合并 PDF 文件
+        /// </summary>
+        /// <param name="sourceFiles">数组包含要合并的源 PDF 文件的路径</param>
+        /// <param name="destinationFile">是合并后的 PDF 文件的路径</param>
+        static void mergePdfFiles(List<String> sourceFiles, string destinationFile)
+        {
+            using (var destinationStream = new FileStream(destinationFile, FileMode.Create))
+            {
+                using (var pdfWriter = new PdfWriter(destinationStream))
+                {
+                    using (var pdfDocument = new PdfDocument(pdfWriter))
+                    {
+                        var pdfMerger = new PdfMerger(pdfDocument);
+
+                        foreach (var sourceFile in sourceFiles)
+                        {
+                            using (var sourceStream = new FileStream(sourceFile, FileMode.Open))
+                            {
+                                using (var sourceDocument = new PdfDocument(new PdfReader(sourceStream)))
+                                {
+                                    pdfMerger.Merge(sourceDocument, 1, sourceDocument.GetNumberOfPages());
+                                }
+                            }
+                        }
+                        MessageBox.Show("PDF 合并完毕！");
+                    }
+                }
+            }
+        }
+        #endregion
     }
 }
