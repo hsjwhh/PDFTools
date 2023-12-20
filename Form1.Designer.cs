@@ -28,27 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            rbtMerge = new RadioButton();
-            rbtSplit = new RadioButton();
-            btRun = new Button();
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             lbPdfFiles = new ListBox();
-            btSelect = new Button();
             openFileDialogPDF = new OpenFileDialog();
             materialTabControlMain = new ReaLTaiizor.Controls.MaterialTabControl();
             tabPage1 = new TabPage();
-            materialButton2 = new ReaLTaiizor.Controls.MaterialButton();
-            materialButton1 = new ReaLTaiizor.Controls.MaterialButton();
             materialLabel2 = new ReaLTaiizor.Controls.MaterialLabel();
+            mrbtMerge = new ReaLTaiizor.Controls.MaterialRadioButton();
+            mrbtSplit = new ReaLTaiizor.Controls.MaterialRadioButton();
+            mbtRun = new ReaLTaiizor.Controls.MaterialButton();
+            mbtSelectPDF = new ReaLTaiizor.Controls.MaterialButton();
             tabPage2 = new TabPage();
+            pictureBox8 = new PictureBox();
+            pictureBox7 = new PictureBox();
+            pictureBox6 = new PictureBox();
             pictureBox5 = new PictureBox();
             pictureBox4 = new PictureBox();
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             materialLabel1 = new ReaLTaiizor.Controls.MaterialLabel();
+            menuiconList = new ImageList(components);
             materialTabControlMain.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -56,57 +63,14 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
-            // rbtMerge
-            // 
-            rbtMerge.AutoSize = true;
-            rbtMerge.Location = new Point(450, 106);
-            rbtMerge.Name = "rbtMerge";
-            rbtMerge.Size = new Size(50, 21);
-            rbtMerge.TabIndex = 5;
-            rbtMerge.Text = "合并";
-            rbtMerge.UseVisualStyleBackColor = true;
-            rbtMerge.CheckedChanged += rbtMerge_CheckedChanged;
-            // 
-            // rbtSplit
-            // 
-            rbtSplit.AutoSize = true;
-            rbtSplit.Checked = true;
-            rbtSplit.Location = new Point(450, 69);
-            rbtSplit.Name = "rbtSplit";
-            rbtSplit.Size = new Size(50, 21);
-            rbtSplit.TabIndex = 4;
-            rbtSplit.TabStop = true;
-            rbtSplit.Text = "拆分";
-            rbtSplit.UseVisualStyleBackColor = true;
-            // 
-            // btRun
-            // 
-            btRun.Location = new Point(450, 258);
-            btRun.Name = "btRun";
-            btRun.Size = new Size(78, 23);
-            btRun.TabIndex = 3;
-            btRun.Text = "运行";
-            btRun.UseVisualStyleBackColor = true;
-            btRun.Click += btRun_Click;
-            // 
             // lbPdfFiles
             // 
             lbPdfFiles.FormattingEnabled = true;
             lbPdfFiles.ItemHeight = 17;
-            lbPdfFiles.Location = new Point(6, 38);
+            lbPdfFiles.Location = new Point(12, 39);
             lbPdfFiles.Name = "lbPdfFiles";
-            lbPdfFiles.Size = new Size(438, 259);
+            lbPdfFiles.Size = new Size(500, 225);
             lbPdfFiles.TabIndex = 2;
-            // 
-            // btSelect
-            // 
-            btSelect.Location = new Point(451, 229);
-            btSelect.Name = "btSelect";
-            btSelect.Size = new Size(75, 23);
-            btSelect.TabIndex = 1;
-            btSelect.Text = "选择";
-            btSelect.UseVisualStyleBackColor = true;
-            btSelect.Click += btSelect_Click;
             // 
             // openFileDialogPDF
             // 
@@ -119,6 +83,7 @@
             materialTabControlMain.Controls.Add(tabPage2);
             materialTabControlMain.Depth = 0;
             materialTabControlMain.Dock = DockStyle.Fill;
+            materialTabControlMain.ImageList = menuiconList;
             materialTabControlMain.Location = new Point(3, 64);
             materialTabControlMain.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
             materialTabControlMain.Multiline = true;
@@ -130,93 +95,166 @@
             // tabPage1
             // 
             tabPage1.BackColor = Color.White;
-            tabPage1.Controls.Add(materialButton2);
-            tabPage1.Controls.Add(materialButton1);
             tabPage1.Controls.Add(materialLabel2);
-            tabPage1.Controls.Add(btRun);
-            tabPage1.Controls.Add(rbtMerge);
+            tabPage1.Controls.Add(mrbtMerge);
+            tabPage1.Controls.Add(mrbtSplit);
+            tabPage1.Controls.Add(mbtRun);
+            tabPage1.Controls.Add(mbtSelectPDF);
             tabPage1.Controls.Add(lbPdfFiles);
-            tabPage1.Controls.Add(btSelect);
-            tabPage1.Controls.Add(rbtSplit);
-            tabPage1.Location = new Point(4, 26);
+            tabPage1.ImageKey = "round_assessment_white_24dp.png";
+            tabPage1.Location = new Point(4, 31);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(586, 303);
+            tabPage1.Size = new Size(586, 298);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "主页";
-            // 
-            // materialButton2
-            // 
-            materialButton2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            materialButton2.Density = ReaLTaiizor.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton2.Depth = 0;
-            materialButton2.HighEmphasis = true;
-            materialButton2.Icon = null;
-            materialButton2.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
-            materialButton2.Location = new Point(451, 184);
-            materialButton2.Margin = new Padding(4, 6, 4, 6);
-            materialButton2.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
-            materialButton2.Name = "materialButton2";
-            materialButton2.NoAccentTextColor = Color.Empty;
-            materialButton2.Size = new Size(64, 36);
-            materialButton2.TabIndex = 8;
-            materialButton2.Text = "运行";
-            materialButton2.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
-            materialButton2.UseAccentColor = false;
-            materialButton2.UseVisualStyleBackColor = true;
-            // 
-            // materialButton1
-            // 
-            materialButton1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            materialButton1.Density = ReaLTaiizor.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton1.Depth = 0;
-            materialButton1.HighEmphasis = true;
-            materialButton1.Icon = null;
-            materialButton1.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
-            materialButton1.Location = new Point(451, 136);
-            materialButton1.Margin = new Padding(4, 6, 4, 6);
-            materialButton1.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
-            materialButton1.Name = "materialButton1";
-            materialButton1.NoAccentTextColor = Color.Empty;
-            materialButton1.Size = new Size(64, 36);
-            materialButton1.TabIndex = 7;
-            materialButton1.Text = "选择";
-            materialButton1.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
-            materialButton1.UseAccentColor = false;
-            materialButton1.UseVisualStyleBackColor = true;
             // 
             // materialLabel2
             // 
             materialLabel2.AutoSize = true;
             materialLabel2.Depth = 0;
-            materialLabel2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel2.Location = new Point(6, 17);
+            materialLabel2.Font = new Font("Roboto", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            materialLabel2.FontType = ReaLTaiizor.Manager.MaterialSkinManager.FontType.Button;
+            materialLabel2.Location = new Point(12, 13);
             materialLabel2.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
             materialLabel2.Name = "materialLabel2";
-            materialLabel2.Size = new Size(49, 19);
-            materialLabel2.TabIndex = 6;
-            materialLabel2.Text = "文件：";
+            materialLabel2.Size = new Size(113, 17);
+            materialLabel2.TabIndex = 11;
+            materialLabel2.Text = "待处理文件列表：";
+            // 
+            // mrbtMerge
+            // 
+            mrbtMerge.Depth = 0;
+            mrbtMerge.Location = new Point(101, 283);
+            mrbtMerge.Margin = new Padding(0);
+            mrbtMerge.MouseLocation = new Point(-1, -1);
+            mrbtMerge.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
+            mrbtMerge.Name = "mrbtMerge";
+            mrbtMerge.Ripple = true;
+            mrbtMerge.Size = new Size(67, 32);
+            mrbtMerge.TabIndex = 10;
+            mrbtMerge.TabStop = true;
+            mrbtMerge.Text = "合并";
+            mrbtMerge.UseAccentColor = false;
+            mrbtMerge.UseVisualStyleBackColor = true;
+            mrbtMerge.CheckedChanged += mrbtMerge_CheckedChanged;
+            // 
+            // mrbtSplit
+            // 
+            mrbtSplit.Checked = true;
+            mrbtSplit.Depth = 0;
+            mrbtSplit.Location = new Point(12, 283);
+            mrbtSplit.Margin = new Padding(0);
+            mrbtSplit.MouseLocation = new Point(-1, -1);
+            mrbtSplit.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
+            mrbtSplit.Name = "mrbtSplit";
+            mrbtSplit.Ripple = true;
+            mrbtSplit.Size = new Size(67, 32);
+            mrbtSplit.TabIndex = 9;
+            mrbtSplit.TabStop = true;
+            mrbtSplit.Text = "拆分";
+            mrbtSplit.UseAccentColor = false;
+            mrbtSplit.UseVisualStyleBackColor = true;
+            mrbtSplit.CheckedChanged += mrbtSplit_CheckedChanged;
+            // 
+            // mbtRun
+            // 
+            mbtRun.AutoSize = false;
+            mbtRun.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            mbtRun.Density = ReaLTaiizor.Controls.MaterialButton.MaterialButtonDensity.Default;
+            mbtRun.Depth = 0;
+            mbtRun.HighEmphasis = true;
+            mbtRun.Icon = null;
+            mbtRun.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
+            mbtRun.Location = new Point(362, 283);
+            mbtRun.Margin = new Padding(4, 6, 4, 6);
+            mbtRun.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
+            mbtRun.Name = "mbtRun";
+            mbtRun.NoAccentTextColor = Color.Empty;
+            mbtRun.Size = new Size(150, 32);
+            mbtRun.TabIndex = 8;
+            mbtRun.Text = "运行";
+            mbtRun.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
+            mbtRun.UseAccentColor = false;
+            mbtRun.UseVisualStyleBackColor = true;
+            mbtRun.Click += mbtRun_Click;
+            // 
+            // mbtSelectPDF
+            // 
+            mbtSelectPDF.AutoSize = false;
+            mbtSelectPDF.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            mbtSelectPDF.Density = ReaLTaiizor.Controls.MaterialButton.MaterialButtonDensity.Default;
+            mbtSelectPDF.Depth = 0;
+            mbtSelectPDF.HighEmphasis = true;
+            mbtSelectPDF.Icon = null;
+            mbtSelectPDF.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
+            mbtSelectPDF.Location = new Point(190, 283);
+            mbtSelectPDF.Margin = new Padding(4, 6, 4, 6);
+            mbtSelectPDF.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
+            mbtSelectPDF.Name = "mbtSelectPDF";
+            mbtSelectPDF.NoAccentTextColor = Color.Empty;
+            mbtSelectPDF.Size = new Size(150, 32);
+            mbtSelectPDF.TabIndex = 7;
+            mbtSelectPDF.Text = "选择文件";
+            mbtSelectPDF.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
+            mbtSelectPDF.UseAccentColor = false;
+            mbtSelectPDF.UseVisualStyleBackColor = true;
+            mbtSelectPDF.Click += mbtSelectPDF_Click;
             // 
             // tabPage2
             // 
             tabPage2.BackColor = Color.White;
+            tabPage2.Controls.Add(pictureBox8);
+            tabPage2.Controls.Add(pictureBox7);
+            tabPage2.Controls.Add(pictureBox6);
             tabPage2.Controls.Add(pictureBox5);
             tabPage2.Controls.Add(pictureBox4);
             tabPage2.Controls.Add(pictureBox3);
             tabPage2.Controls.Add(pictureBox2);
             tabPage2.Controls.Add(pictureBox1);
             tabPage2.Controls.Add(materialLabel1);
-            tabPage2.Location = new Point(4, 26);
+            tabPage2.ImageKey = "round_bookmark_white_24dp.png";
+            tabPage2.Location = new Point(4, 31);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(586, 303);
+            tabPage2.Size = new Size(586, 298);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "关于";
+            // 
+            // pictureBox8
+            // 
+            pictureBox8.Image = Properties.Resources.iText_Logo_Small;
+            pictureBox8.Location = new Point(6, 69);
+            pictureBox8.Name = "pictureBox8";
+            pictureBox8.Size = new Size(110, 50);
+            pictureBox8.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox8.TabIndex = 8;
+            pictureBox8.TabStop = false;
+            // 
+            // pictureBox7
+            // 
+            pictureBox7.Image = Properties.Resources.Taiizor_Logo;
+            pictureBox7.Location = new Point(122, 69);
+            pictureBox7.Name = "pictureBox7";
+            pictureBox7.Size = new Size(50, 50);
+            pictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox7.TabIndex = 7;
+            pictureBox7.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            pictureBox6.Image = Properties.Resources.GitHub_Mark;
+            pictureBox6.Location = new Point(178, 69);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(50, 50);
+            pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox6.TabIndex = 6;
+            pictureBox6.TabStop = false;
             // 
             // pictureBox5
             // 
             pictureBox5.Image = Properties.Resources.net60_blue;
-            pictureBox5.Location = new Point(19, 16);
+            pictureBox5.Location = new Point(6, 27);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(80, 20);
             pictureBox5.TabIndex = 5;
@@ -225,7 +263,7 @@
             // pictureBox4
             // 
             pictureBox4.Image = Properties.Resources.badge;
-            pictureBox4.Location = new Point(19, 42);
+            pictureBox4.Location = new Point(268, 27);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(103, 20);
             pictureBox4.TabIndex = 4;
@@ -234,7 +272,7 @@
             // pictureBox3
             // 
             pictureBox3.Image = Properties.Resources.badge_2;
-            pictureBox3.Location = new Point(128, 42);
+            pictureBox3.Location = new Point(377, 27);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(150, 20);
             pictureBox3.TabIndex = 3;
@@ -243,7 +281,7 @@
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.csharp;
-            pictureBox2.Location = new Point(105, 16);
+            pictureBox2.Location = new Point(92, 27);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(80, 20);
             pictureBox2.TabIndex = 2;
@@ -252,7 +290,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.IDE_VS2022_blue;
-            pictureBox1.Location = new Point(191, 16);
+            pictureBox1.Location = new Point(178, 27);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(84, 20);
             pictureBox1.TabIndex = 1;
@@ -262,13 +300,22 @@
             // 
             materialLabel1.BackColor = Color.Transparent;
             materialLabel1.Depth = 0;
-            materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel1.Location = new Point(19, 78);
+            materialLabel1.Font = new Font("Roboto", 10F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel1.FontType = ReaLTaiizor.Manager.MaterialSkinManager.FontType.Overline;
+            materialLabel1.Location = new Point(6, 296);
             materialLabel1.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
             materialLabel1.Name = "materialLabel1";
-            materialLabel1.Size = new Size(551, 131);
+            materialLabel1.Size = new Size(76, 14);
             materialLabel1.TabIndex = 0;
-            materialLabel1.Text = "NuGet：RealTaiizor, iText\r\n";
+            materialLabel1.Text = "create by Michael\r\n";
+            // 
+            // menuiconList
+            // 
+            menuiconList.ColorDepth = ColorDepth.Depth32Bit;
+            menuiconList.ImageStream = (ImageListStreamer)resources.GetObject("menuiconList.ImageStream");
+            menuiconList.TransparentColor = Color.Transparent;
+            menuiconList.Images.SetKeyName(0, "round_assessment_white_24dp.png");
+            menuiconList.Images.SetKeyName(1, "round_bookmark_white_24dp.png");
             // 
             // Form1
             // 
@@ -287,6 +334,9 @@
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
             tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
@@ -296,11 +346,7 @@
         }
 
         #endregion
-        private Button btRun;
         private ListBox lbPdfFiles;
-        private Button btSelect;
-        private RadioButton rbtMerge;
-        private RadioButton rbtSplit;
         private OpenFileDialog openFileDialogPDF;
         private ReaLTaiizor.Controls.MaterialTabControl materialTabControlMain;
         private TabPage tabPage1;
@@ -311,8 +357,14 @@
         private PictureBox pictureBox2;
         private PictureBox pictureBox1;
         private PictureBox pictureBox5;
-        private ReaLTaiizor.Controls.MaterialButton materialButton2;
-        private ReaLTaiizor.Controls.MaterialButton materialButton1;
+        private ReaLTaiizor.Controls.MaterialButton mbtRun;
+        private ReaLTaiizor.Controls.MaterialButton mbtSelectPDF;
+        private ImageList menuiconList;
+        private PictureBox pictureBox6;
+        private PictureBox pictureBox8;
+        private PictureBox pictureBox7;
+        private ReaLTaiizor.Controls.MaterialRadioButton mrbtMerge;
+        private ReaLTaiizor.Controls.MaterialRadioButton mrbtSplit;
         private ReaLTaiizor.Controls.MaterialLabel materialLabel2;
     }
 }
