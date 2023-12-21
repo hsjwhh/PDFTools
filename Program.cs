@@ -1,4 +1,4 @@
-namespace PDFTools
+﻿namespace PDFTools
 {
     internal static class Program
     {

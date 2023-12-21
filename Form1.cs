@@ -1,4 +1,4 @@
-using iText.Kernel.Pdf;
+ï»¿using iText.Kernel.Pdf;
 using iText.Kernel.Utils;
 using ReaLTaiizor.Forms;
 
@@ -12,59 +12,59 @@ namespace PDFTools
         }
 
 
-        #region ·Ö¸î PDF ÎÄ¼ş·½·¨
+        #region åˆ†å‰² PDF æ–‡ä»¶æ–¹æ³•
         /// <summary>
-        /// ·Ö¸î PDF ÎÄ¼ş
+        /// åˆ†å‰² PDF æ–‡ä»¶
         /// </summary>
-        /// <param name="dest">ĞèÒª·Ö¸îµÄÔ­Ê¼ PDF ÎÄ¼ş</param>
+        /// <param name="dest">éœ€è¦åˆ†å‰²çš„åŸå§‹ PDF æ–‡ä»¶</param>
         private void splitePDF(string dest)
         {
             try
             {
-                // ÊäÈëPDFÎÄ¼şÂ·¾¶
+                // è¾“å…¥PDFæ–‡ä»¶è·¯å¾„
                 string inputFilePath = Path.GetFullPath(dest);
 
-                // Êä³öPDFÎÄ¼ş¼ĞÂ·¾¶
+                // è¾“å‡ºPDFæ–‡ä»¶å¤¹è·¯å¾„
                 string outputFolder = Path.GetDirectoryName(dest);
                 string inputFilename = Path.GetFileNameWithoutExtension(dest);
 
-                // ´´½¨ PdfReader
+                // åˆ›å»º PdfReader
                 using (PdfReader pdfReader = new PdfReader(inputFilePath))
                 {
-                    // »ñÈ¡ PdfDocument
+                    // è·å– PdfDocument
                     using (PdfDocument pdfDocument = new PdfDocument(pdfReader))
                     {
-                        // Ñ­»·´¦ÀíÃ¿Ò»Ò³
+                        // å¾ªç¯å¤„ç†æ¯ä¸€é¡µ
                         for (int pageNum = 1; pageNum <= pdfDocument.GetNumberOfPages(); pageNum++)
                         {
-                            // ´´½¨ĞÂµÄ PdfDocument
+                            // åˆ›å»ºæ–°çš„ PdfDocument
                             using (PdfDocument newPdfDocument = new PdfDocument(new PdfWriter(outputFolder + "\\" + inputFilename + "_page_" + pageNum + ".pdf")))
                             {
-                                // ¸´ÖÆµ±Ç°Ò³µ½ĞÂµÄ PdfDocument
+                                // å¤åˆ¶å½“å‰é¡µåˆ°æ–°çš„ PdfDocument
                                 pdfDocument.CopyPagesTo(pageNum, pageNum, newPdfDocument);
 
-                                // ¹Ø±ÕĞÂµÄ PdfDocument
+                                // å…³é—­æ–°çš„ PdfDocument
                                 newPdfDocument.Close();
                             }
                         }
                     }
                 }
 
-                MessageBox.Show("PDF ·Ö¸îÍê³É£¡");
+                MessageBox.Show("PDF åˆ†å‰²å®Œæˆï¼");
             }
             catch (Exception e)
             {
-                MessageBox.Show($"·¢Éú´íÎó: {e.Message}");
+                MessageBox.Show($"å‘ç”Ÿé”™è¯¯: {e.Message}");
             }
         }
         #endregion
 
-        #region ºÏ²¢ PDF ÎÄ¼ş·½·¨
+        #region åˆå¹¶ PDF æ–‡ä»¶æ–¹æ³•
         /// <summary>
-        /// ºÏ²¢ PDF ÎÄ¼ş
+        /// åˆå¹¶ PDF æ–‡ä»¶
         /// </summary>
-        /// <param name="sourceFiles">Êı×é°üº¬ÒªºÏ²¢µÄÔ´ PDF ÎÄ¼şµÄÂ·¾¶</param>
-        /// <param name="destinationFile">ÊÇºÏ²¢ºóµÄ PDF ÎÄ¼şµÄÂ·¾¶</param>
+        /// <param name="sourceFiles">æ•°ç»„åŒ…å«è¦åˆå¹¶çš„æº PDF æ–‡ä»¶çš„è·¯å¾„</param>
+        /// <param name="destinationFile">æ˜¯åˆå¹¶åçš„ PDF æ–‡ä»¶çš„è·¯å¾„</param>
         static void mergePdfFiles(List<String> sourceFiles, string destinationFile)
         {
             using (var destinationStream = new FileStream(destinationFile, FileMode.Create))
@@ -85,7 +85,7 @@ namespace PDFTools
                                 }
                             }
                         }
-                        MessageBox.Show("PDF ºÏ²¢Íê±Ï£¡");
+                        MessageBox.Show("PDF åˆå¹¶å®Œæ¯•ï¼");
                     }
                 }
             }
@@ -97,20 +97,20 @@ namespace PDFTools
             //OpenFileDialog fileDialog = new OpenFileDialog();
 
             //openFileDialogPDF.Multiselect = true;
-            //openFileDialogPDF.Title = "ÇëÑ¡ÔñÎÄ¼ş";
-            //openFileDialogPDF.Filter = "ËùÓĞ PDF ÎÄ¼ş|*.pdf"; //ÉèÖÃÒªÑ¡ÔñµÄÎÄ¼şµÄÀàĞÍ
+            //openFileDialogPDF.Title = "è¯·é€‰æ‹©æ–‡ä»¶";
+            //openFileDialogPDF.Filter = "æ‰€æœ‰ PDF æ–‡ä»¶|*.pdf"; //è®¾ç½®è¦é€‰æ‹©çš„æ–‡ä»¶çš„ç±»å‹
             if (openFileDialogPDF.ShowDialog() == DialogResult.OK)
             {
-                //System.IO.Path.GetFullPath(openFileDialogPDF.FileName);//¾ø¶ÔÂ·¾¶
-                //System.IO.Path.GetExtension(openFileDialogPDF.FileName);//ÎÄ¼şÀ©Õ¹Ãû
-                //System.IO.Path.GetFileNameWithoutExtension(openFileDialogPDF.FileName);//ÎÄ¼şÃûÃ»ÓĞÀ©Õ¹Ãû
-                //System.IO.Path.GetFileName(openFileDialogPDF.FileName);//µÃµ½ÎÄ¼şÃû
-                //System.IO.Path.GetDirectoryName(openFileDialogPDF.FileName);//µÃµ½Â·¾¶
+                //System.IO.Path.GetFullPath(openFileDialogPDF.FileName);//ç»å¯¹è·¯å¾„
+                //System.IO.Path.GetExtension(openFileDialogPDF.FileName);//æ–‡ä»¶æ‰©å±•å
+                //System.IO.Path.GetFileNameWithoutExtension(openFileDialogPDF.FileName);//æ–‡ä»¶åæ²¡æœ‰æ‰©å±•å
+                //System.IO.Path.GetFileName(openFileDialogPDF.FileName);//å¾—åˆ°æ–‡ä»¶å
+                //System.IO.Path.GetDirectoryName(openFileDialogPDF.FileName);//å¾—åˆ°è·¯å¾„
 
-                // tbFilename.Text = openFileDialogPDF.FileName;//·µ»ØÎÄ¼şµÄÍêÕûÂ·¾¶
-                // Çå³ı listbox ÏîÄ¿
+                // tbFilename.Text = openFileDialogPDF.FileName;//è¿”å›æ–‡ä»¶çš„å®Œæ•´è·¯å¾„
+                // æ¸…é™¤ listbox é¡¹ç›®
                 lbPdfFiles.Items.Clear();
-                // Ìî³ä listbox
+                // å¡«å…… listbox
                 foreach (String file in openFileDialogPDF.FileNames)
                 {
                     try
@@ -119,7 +119,7 @@ namespace PDFTools
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("ÎÄ¼ş´ò¿ª´íÎó£¡");
+                        MessageBox.Show("æ–‡ä»¶æ‰“å¼€é”™è¯¯ï¼");
                     }
                 }
             }
@@ -155,7 +155,7 @@ namespace PDFTools
             }
             else
             {
-                MessageBox.Show("ÇëÑ¡Ôñ PDF ÎÄ¼şºó£¬ÔÙÖ´ĞĞ£¡");
+                MessageBox.Show("è¯·é€‰æ‹© PDF æ–‡ä»¶åï¼Œå†æ‰§è¡Œï¼");
             }
         }
 
