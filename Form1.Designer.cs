@@ -39,6 +39,7 @@
             mrbtSplit = new ReaLTaiizor.Controls.MaterialRadioButton();
             mbtRun = new ReaLTaiizor.Controls.MaterialButton();
             mbtSelectPDF = new ReaLTaiizor.Controls.MaterialButton();
+            tabPage3 = new TabPage();
             tabPage2 = new TabPage();
             pictureBox8 = new PictureBox();
             pictureBox7 = new PictureBox();
@@ -80,6 +81,7 @@
             // materialTabControlMain
             // 
             materialTabControlMain.Controls.Add(tabPage1);
+            materialTabControlMain.Controls.Add(tabPage3);
             materialTabControlMain.Controls.Add(tabPage2);
             materialTabControlMain.Depth = 0;
             materialTabControlMain.Dock = DockStyle.Fill;
@@ -107,7 +109,7 @@
             tabPage1.Padding = new Padding(3);
             tabPage1.Size = new Size(586, 298);
             tabPage1.TabIndex = 0;
-            tabPage1.Text = "主页";
+            tabPage1.Text = "PDF 分割 合并";
             // 
             // materialLabel2
             // 
@@ -118,9 +120,9 @@
             materialLabel2.Location = new Point(12, 13);
             materialLabel2.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
             materialLabel2.Name = "materialLabel2";
-            materialLabel2.Size = new Size(113, 17);
+            materialLabel2.Size = new Size(117, 17);
             materialLabel2.TabIndex = 11;
-            materialLabel2.Text = "待处理文件列表：";
+            materialLabel2.Text = "待处理 PDF 列表：";
             // 
             // mrbtMerge
             // 
@@ -200,6 +202,16 @@
             mbtSelectPDF.UseAccentColor = false;
             mbtSelectPDF.UseVisualStyleBackColor = true;
             mbtSelectPDF.Click += mbtSelectPDF_Click;
+            // 
+            // tabPage3
+            // 
+            tabPage3.ImageKey = "round_swap_vert_white_24dp.png";
+            tabPage3.Location = new Point(4, 31);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Size = new Size(586, 298);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "IMG TO PDF";
+            tabPage3.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
@@ -316,6 +328,7 @@
             menuiconList.TransparentColor = Color.Transparent;
             menuiconList.Images.SetKeyName(0, "round_assessment_white_24dp.png");
             menuiconList.Images.SetKeyName(1, "round_bookmark_white_24dp.png");
+            menuiconList.Images.SetKeyName(2, "round_swap_vert_white_24dp.png");
             // 
             // Form1
             // 
@@ -366,5 +379,6 @@
         private ReaLTaiizor.Controls.MaterialRadioButton mrbtMerge;
         private ReaLTaiizor.Controls.MaterialRadioButton mrbtSplit;
         private ReaLTaiizor.Controls.MaterialLabel materialLabel2;
+        private TabPage tabPage3;
     }
 }
