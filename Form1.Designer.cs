@@ -40,6 +40,10 @@
             mbtRun = new ReaLTaiizor.Controls.MaterialButton();
             mbtSelectPDF = new ReaLTaiizor.Controls.MaterialButton();
             tabPage3 = new TabPage();
+            mbtImgToPDFRun = new ReaLTaiizor.Controls.MaterialButton();
+            mbtSelectIMG = new ReaLTaiizor.Controls.MaterialButton();
+            lbImgFiles = new ListBox();
+            materialLabel3 = new ReaLTaiizor.Controls.MaterialLabel();
             tabPage2 = new TabPage();
             pictureBox8 = new PictureBox();
             pictureBox7 = new PictureBox();
@@ -53,6 +57,7 @@
             menuiconList = new ImageList(components);
             materialTabControlMain.SuspendLayout();
             tabPage1.SuspendLayout();
+            tabPage3.SuspendLayout();
             tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
@@ -139,7 +144,6 @@
             mrbtMerge.Text = "合并";
             mrbtMerge.UseAccentColor = false;
             mrbtMerge.UseVisualStyleBackColor = true;
-            mrbtMerge.CheckedChanged += mrbtMerge_CheckedChanged;
             // 
             // mrbtSplit
             // 
@@ -157,7 +161,6 @@
             mrbtSplit.Text = "拆分";
             mrbtSplit.UseAccentColor = false;
             mrbtSplit.UseVisualStyleBackColor = true;
-            mrbtSplit.CheckedChanged += mrbtSplit_CheckedChanged;
             // 
             // mbtRun
             // 
@@ -205,6 +208,10 @@
             // 
             // tabPage3
             // 
+            tabPage3.Controls.Add(mbtImgToPDFRun);
+            tabPage3.Controls.Add(mbtSelectIMG);
+            tabPage3.Controls.Add(lbImgFiles);
+            tabPage3.Controls.Add(materialLabel3);
             tabPage3.ImageKey = "round_swap_vert_white_24dp.png";
             tabPage3.Location = new Point(4, 31);
             tabPage3.Name = "tabPage3";
@@ -212,6 +219,71 @@
             tabPage3.TabIndex = 2;
             tabPage3.Text = "IMG TO PDF";
             tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // mbtImgToPDFRun
+            // 
+            mbtImgToPDFRun.AutoSize = false;
+            mbtImgToPDFRun.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            mbtImgToPDFRun.Density = ReaLTaiizor.Controls.MaterialButton.MaterialButtonDensity.Default;
+            mbtImgToPDFRun.Depth = 0;
+            mbtImgToPDFRun.HighEmphasis = true;
+            mbtImgToPDFRun.Icon = null;
+            mbtImgToPDFRun.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
+            mbtImgToPDFRun.Location = new Point(362, 283);
+            mbtImgToPDFRun.Margin = new Padding(4, 6, 4, 6);
+            mbtImgToPDFRun.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
+            mbtImgToPDFRun.Name = "mbtImgToPDFRun";
+            mbtImgToPDFRun.NoAccentTextColor = Color.Empty;
+            mbtImgToPDFRun.Size = new Size(150, 32);
+            mbtImgToPDFRun.TabIndex = 15;
+            mbtImgToPDFRun.Text = "运行";
+            mbtImgToPDFRun.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
+            mbtImgToPDFRun.UseAccentColor = false;
+            mbtImgToPDFRun.UseVisualStyleBackColor = true;
+            // 
+            // mbtSelectIMG
+            // 
+            mbtSelectIMG.AutoSize = false;
+            mbtSelectIMG.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            mbtSelectIMG.Density = ReaLTaiizor.Controls.MaterialButton.MaterialButtonDensity.Default;
+            mbtSelectIMG.Depth = 0;
+            mbtSelectIMG.HighEmphasis = true;
+            mbtSelectIMG.Icon = null;
+            mbtSelectIMG.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
+            mbtSelectIMG.Location = new Point(190, 283);
+            mbtSelectIMG.Margin = new Padding(4, 6, 4, 6);
+            mbtSelectIMG.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
+            mbtSelectIMG.Name = "mbtSelectIMG";
+            mbtSelectIMG.NoAccentTextColor = Color.Empty;
+            mbtSelectIMG.Size = new Size(150, 32);
+            mbtSelectIMG.TabIndex = 14;
+            mbtSelectIMG.Text = "选择文件";
+            mbtSelectIMG.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
+            mbtSelectIMG.UseAccentColor = false;
+            mbtSelectIMG.UseVisualStyleBackColor = true;
+            mbtSelectIMG.Click += mbtSelectIMG_Click;
+            // 
+            // lbImgFiles
+            // 
+            lbImgFiles.FormattingEnabled = true;
+            lbImgFiles.ItemHeight = 17;
+            lbImgFiles.Location = new Point(12, 39);
+            lbImgFiles.Name = "lbImgFiles";
+            lbImgFiles.Size = new Size(500, 225);
+            lbImgFiles.TabIndex = 13;
+            // 
+            // materialLabel3
+            // 
+            materialLabel3.AutoSize = true;
+            materialLabel3.Depth = 0;
+            materialLabel3.Font = new Font("Roboto", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            materialLabel3.FontType = ReaLTaiizor.Manager.MaterialSkinManager.FontType.Button;
+            materialLabel3.Location = new Point(12, 13);
+            materialLabel3.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
+            materialLabel3.Name = "materialLabel3";
+            materialLabel3.Size = new Size(117, 17);
+            materialLabel3.TabIndex = 12;
+            materialLabel3.Text = "待处理 IMG 列表：";
             // 
             // tabPage2
             // 
@@ -346,6 +418,8 @@
             materialTabControlMain.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
+            tabPage3.ResumeLayout(false);
+            tabPage3.PerformLayout();
             tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
@@ -380,5 +454,9 @@
         private ReaLTaiizor.Controls.MaterialRadioButton mrbtSplit;
         private ReaLTaiizor.Controls.MaterialLabel materialLabel2;
         private TabPage tabPage3;
+        private ListBox lbImgFiles;
+        private ReaLTaiizor.Controls.MaterialLabel materialLabel3;
+        private ReaLTaiizor.Controls.MaterialButton mbtImgToPDFRun;
+        private ReaLTaiizor.Controls.MaterialButton mbtSelectIMG;
     }
 }

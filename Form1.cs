@@ -95,10 +95,11 @@ namespace PDFTools
         private void mbtSelectPDF_Click(object sender, EventArgs e)
         {
             //OpenFileDialog fileDialog = new OpenFileDialog();
-
-            //openFileDialogPDF.Multiselect = true;
-            //openFileDialogPDF.Title = "请选择文件";
-            //openFileDialogPDF.Filter = "所有 PDF 文件|*.pdf"; //设置要选择的文件的类型
+            
+            // 检查确认是否可以多选文件
+            checkMrbtChecked();
+            openFileDialogPDF.Title = "请选择 PDF 文件";
+            openFileDialogPDF.Filter = "PDF 文件|*.pdf"; //设置要选择的文件的类型
             if (openFileDialogPDF.ShowDialog() == DialogResult.OK)
             {
                 //System.IO.Path.GetFullPath(openFileDialogPDF.FileName);//绝对路径
@@ -159,15 +160,6 @@ namespace PDFTools
             }
         }
 
-        private void mrbtMerge_CheckedChanged(object sender, EventArgs e)
-        {
-            checkMrbtChecked();
-        }
-
-        private void mrbtSplit_CheckedChanged(object sender, EventArgs e)
-        {
-            checkMrbtChecked();
-        }
 
         private void checkMrbtChecked()
         {
@@ -178,6 +170,32 @@ namespace PDFTools
             else
             {
                 this.openFileDialogPDF.Multiselect = false;
+            }
+        }
+
+        private void mbtSelectIMG_Click(object sender, EventArgs e)
+        {
+            //OpenFileDialog fileDialog = new OpenFileDialog();
+
+            this.openFileDialogPDF.Multiselect = true;
+            this.openFileDialogPDF.Title = "请选择需要转换到 PDF 的【图像】文件";
+            this.openFileDialogPDF.Filter = "JPEG 文件|*.jpg|PNG 文件|*.png"; //设置要选择的文件的类型
+            if (openFileDialogPDF.ShowDialog() == DialogResult.OK)
+            {
+                // 清除 listbox 项目
+                lbImgFiles.Items.Clear();
+                // 填充 listbox
+                foreach (String file in openFileDialogPDF.FileNames)
+                {
+                    try
+                    {
+                        lbImgFiles.Items.Add(file);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("文件打开错误！");
+                    }
+                }
             }
         }
     }
