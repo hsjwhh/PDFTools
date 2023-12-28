@@ -240,6 +240,7 @@
             mbtImgToPDFRun.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
             mbtImgToPDFRun.UseAccentColor = false;
             mbtImgToPDFRun.UseVisualStyleBackColor = true;
+            mbtImgToPDFRun.Click += mbtImgToPDFRun_Click;
             // 
             // mbtSelectIMG
             // 

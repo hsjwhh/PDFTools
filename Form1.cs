@@ -1,6 +1,12 @@
-﻿using iText.Kernel.Pdf;
+﻿using iText.IO.Image;
+using iText.Kernel.Geom;
+using iText.Kernel.Pdf;
 using iText.Kernel.Utils;
+using iText.Layout;
+using iText.Layout.Element;
 using ReaLTaiizor.Forms;
+using System.Windows.Forms;
+using Path = System.IO.Path;
 
 namespace PDFTools
 {
@@ -95,7 +101,7 @@ namespace PDFTools
         private void mbtSelectPDF_Click(object sender, EventArgs e)
         {
             //OpenFileDialog fileDialog = new OpenFileDialog();
-            
+
             // 检查确认是否可以多选文件
             checkMrbtChecked();
             openFileDialogPDF.Title = "请选择 PDF 文件";
@@ -197,6 +203,105 @@ namespace PDFTools
                     }
                 }
             }
+        }
+
+        private void mbtImgToPDFRun_Click(object sender, EventArgs e)
+        {
+            // string msg = string.Empty;
+            if (lbImgFiles.Items.Count > 0)
+            {
+
+                List<String> sourceFiles = new List<String>();
+                string outputFolder = string.Empty;
+                foreach (String file in lbImgFiles.Items)
+                {
+                    sourceFiles.Add(file);
+                    if (outputFolder == string.Empty)
+                    {
+                        outputFolder = Path.GetDirectoryName(file);
+                    }
+                }
+                imgToPdfFiles(sourceFiles, outputFolder + "\\ImgToPDF.pdf");
+
+                lbImgFiles.Items.Clear();
+            }
+            else
+            {
+                MessageBox.Show("请选择 PDF 文件后，再执行！");
+            }
+        }
+
+        private void imgToPdfFiles(List<string> imageFiles, string outputPath)
+        {
+            // 创建一个 PDF 文档
+            using (PdfWriter writer = new PdfWriter(outputPath))
+            {
+                using (PdfDocument pdf = new PdfDocument(writer))
+                {
+                    // 创建文档布局
+                    Document document = new Document(pdf);
+
+                    // 判断图片的宽高比，用于确定文档方向
+                    bool isLandscape = CalculateImageAspectRatio(imageFiles) > 1;
+
+                    // 设置文档方向
+                    pdf.SetDefaultPageSize(isLandscape ? PageSize.A4.Rotate() : PageSize.A4);
+
+                    // 循环处理每张图片
+                    for (int i = 0; i < imageFiles.Count; i++)
+                    {
+                        // 添加图片到 PDF，并让图片自适应大小
+                        addImageToPdf(document, imageFiles[i]);
+                        // 判断是否最后一张图片
+                        if (i < imageFiles.Count - 1)
+                        {
+                            // 添加空白页
+                            document.Add(new AreaBreak()); // 添加换行new Paragraph("\n")，可根据需要调整
+                        }
+
+                    }
+
+                    // 关闭文档
+                    document.Close();
+                }
+            }
+            MessageBox.Show("PDF 文件已生成： " + outputPath);
+        }
+
+        // 计算大多数图片的宽高比
+        static double CalculateImageAspectRatio(List<string> imageFiles)
+        {
+            double totalAspectRatio = 0;
+
+            // 获取所有图片的宽高比
+            foreach (var imagePath in imageFiles)
+            {
+                using (var stream = new FileStream(imagePath, FileMode.Open, FileAccess.Read))
+                {
+                    // 如果图片格式为常见几种 jpeg、png等直接使用 Create，否则请指定具体格式
+                    var image = ImageDataFactory.Create(new Uri(imagePath));
+                    double aspectRatio = (double)image.GetWidth() / image.GetHeight();
+                    totalAspectRatio += aspectRatio;
+                }
+            }
+
+            // 计算平均宽高比
+            double averageAspectRatio = totalAspectRatio / imageFiles.Count;
+
+            return averageAspectRatio;
+        }
+
+        // 添加图片到 PDF，并让图片自适应大小
+        static void addImageToPdf(Document document, string imagePath)
+        {
+            // 读取图片文件
+            iText.Layout.Element.Image image = new iText.Layout.Element.Image(ImageDataFactory.Create(imagePath));
+
+            // 启用自动缩放
+            image.SetAutoScale(true);
+
+            // 添加图片到文档
+            document.Add(image);
         }
     }
 }
