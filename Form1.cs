@@ -1,4 +1,4 @@
-﻿using iText.IO.Image;
+using iText.IO.Image;
 using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
 using iText.Kernel.Utils;
@@ -227,7 +227,7 @@ namespace PDFTools
             }
             else
             {
-                MessageBox.Show("请选择 PDF 文件后，再执行！");
+                MessageBox.Show("请选择 图像 文件后，再执行！");
             }
         }
 
