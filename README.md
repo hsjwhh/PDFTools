@@ -9,3 +9,4 @@ dotnet add package itext.bouncy-castle-adapter --version 8.0.2
 ```
 - 程序 UI 使用`ReaLTaiizor`
 - 目前实现 pdf 文件合并、分割操作，后续实现 图片合并 pdf 文件
+- 测试自动测试和构建
